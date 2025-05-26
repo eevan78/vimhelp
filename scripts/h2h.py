@@ -42,12 +42,6 @@ def main():
         default="vim",
         help="Vim flavour (default: vim)",
     )
-    #parser.add_argument(
-    #    "--version-tag",
-    #    "-v",
-    #    type=pathlib.Path,
-    #    help="Manual entry of the version tag (default: none)",
-    #)
     parser.add_argument(
         "--web-version",
         "-w",
@@ -124,7 +118,7 @@ def run(args):
         print("Initializing tags...")
         h2h = VimH2H(mode=mode, version=ver, project=args.project)
         for infile in args.in_dir.iterdir():
-            if infile.suffix == ".txt":
+            if infile.suffix == ".srx":
                 h2h.add_tags(infile.name, infile.read_text())
 
     if args.out_dir is not None:
@@ -133,7 +127,7 @@ def run(args):
     for infile in args.in_dir.iterdir():
         if len(args.basenames) != 0 and infile.name not in args.basenames:
             continue
-        if infile.suffix != ".txt" and infile.name != "tags":
+        if infile.suffix != ".srx" and infile.name != "tags":
             print(f"Ignoring {infile}")
             continue
         content = infile.read_text()

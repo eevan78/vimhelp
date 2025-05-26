@@ -33,14 +33,14 @@ VimProject.other = NeovimProject
 NeovimProject.other = VimProject
 
 NeovimProject.local_additions = """\
-<a href="matchit.txt.html#matchit.txt" class="l">matchit.txt</a>       Проширено „%” упаривање
+<a href="matchit.srx.html#matchit.txt" class="l">matchit.txt</a>       Проширено „%” упаривање
 """
 
 # fmt: off
 VimProject.local_additions = NeovimProject.local_additions + """\
-<a href="editorconfig.txt.html#editorconfig.txt" class="l">editorconfig.txt</a>  EditorConfig додатак за vim.
-<a href="comment.txt.html#comment.txt" class="l">comment.txt</a>       Додавање и уклањање коментара из текста
-<a href="helptoc.txt.html#helptoc.txt" class="l">helptoc.txt</a>       Интерактивни садржај за бафере помоћи и још неколико осталих
+<a href="editorconfig.srx.html#editorconfig.txt" class="l">editorconfig.txt</a>  EditorConfig додатак за vim.
+<a href="comment.srx.html#comment.txt" class="l">comment.txt</a>       Додавање и уклањање коментара из текста
+<a href="helptoc.srx.html#helptoc.txt" class="l">helptoc.txt</a>       Интерактивни садржај за бафере помоћи и још неколико осталих
                   типова фајлова
 """
 # fmt: on
@@ -235,7 +235,7 @@ class VimH2H:
             i += 1
 
     def htmlfilename(self, name):
-        if name == "help.txt" and self._mode == "online":
+        if name == "help.srx" and self._mode == "online":
             return "./"
         else:
             return name + ".html"
@@ -245,7 +245,7 @@ class VimH2H:
         return flask.render_template("prelude.html", theme=theme)
 
     def to_html(self, filename, contents):
-        is_help_txt = filename == "help.txt"
+        is_help_txt = filename == "help.srx"
         lines = [line.rstrip("\r\n") for line in RE_NEWLINE.split(contents)]
 
         out = []
@@ -374,7 +374,7 @@ class VimH2H:
             project=self._project,
             version=self._version,
             filename=filename,
-            helptxt=self.htmlfilename("help.txt"),
+            helptxt=self.htmlfilename("help.srx"),
             content=markupsafe.Markup("".join(out)),
             sidebar_headings=sidebar_headings,
         )

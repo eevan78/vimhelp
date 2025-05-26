@@ -47,7 +47,7 @@ Also included is the <a href="vim_faq.txt.html">Vim FAQ</a>, kept up to date fro
 are also available.</p>
 {% endif %}
 
-{% if mode == "offline" and filename == "help.txt" %}
+{% if mode == "offline" and filename == "help.srx" %}
 <div id="title-cont">
 <h1>{{project.name}} фајлови помоћи</h1>
 </div>
@@ -57,8 +57,8 @@ are also available.</p>
 {% set sitenavi %}
 Брзи линкови:
 <a href="{{helptxt}}">преглед помоћи</a> &middot;
-<a href="quickref.txt.html">брза референца</a> &middot;
-<a href="usr_toc.txt.html">садржај корисничког упутства</a> &middot;
+<a href="quickref.srx.html">брза референца</a> &middot;
+<a href="usr_toc.srx.html">садржај корисничког упутства</a> &middot;
 <a href="{{helptxt}}#reference_toc">садржај референтног упутства</a>
 {% if project.name == "Vim" %}
 {# &middot; <a href="vim_faq.txt.html">faq</a> #}
@@ -102,6 +102,6 @@ are also available.</p>
 </div>
 </main>
 <p>{{sitenavi}}</p>
-<footer>Овј сајт одржава Carlo Teubner (<i>(моје име) at cteubner dot net</i>), а превод Иван Пешић.</footer>
+<footer>Овј сајт одржава Carlo Teubner (<i>(моје име) at cteubner dot net</i>), а превод и модификацију за српски Иван Пешић.</footer>
 </body>
 </html>
