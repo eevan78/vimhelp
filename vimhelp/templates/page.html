@@ -47,14 +47,21 @@ Also included is the <a href="vim_faq.txt.html">Vim FAQ</a>, kept up to date fro
 are also available.</p>
 {% endif %}
 
+{% if mode == "offline" and filename == "help.txt" %}
+<div id="title-cont">
+<h1>{{project.name}} фајлови помоћи</h1>
+</div>
+<p>Ово је локална HTML верзија српског превода <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">{{project.name}}</a> фајлова помоћи{% if version %}, ажурираних за {{project.name}} {{version}}{% endif %}.
+{% endif %}
+
 {% set sitenavi %}
-Quick links:
-<a href="{{helptxt}}">help overview</a> &middot;
-<a href="quickref.txt.html">quick reference</a> &middot;
-<a href="usr_toc.txt.html">user manual toc</a> &middot;
-<a href="{{helptxt}}#reference_toc">reference manual toc</a>
+Брзи линкови:
+<a href="{{helptxt}}">преглед помоћи</a> &middot;
+<a href="quickref.txt.html">брза референца</a> &middot;
+<a href="usr_toc.txt.html">садржај корисничког упутства</a> &middot;
+<a href="{{helptxt}}#reference_toc">садржај референтног упутства</a>
 {% if project.name == "Vim" %}
-&middot; <a href="vim_faq.txt.html">faq</a>
+{# &middot; <a href="vim_faq.txt.html">faq</a> #}
 {% endif %}
 {% endset %}
 
@@ -81,7 +88,7 @@ Quick links:
 <main>
 <div id="vh-sidebar">
 {% if sidebar_headings %}
-<ul><li><a href="#">↑Top↑</a></li>
+<ul><li><a href="#">↑Врх↑</a></li>
 {% for h in sidebar_headings %}
 <li>{{h}}</li>
 {% endfor %}
@@ -95,6 +102,6 @@ Quick links:
 </div>
 </main>
 <p>{{sitenavi}}</p>
-<footer>This site is maintained by Carlo Teubner (<i>(my first name) at cteubner dot net</i>).</footer>
+<footer>Овј сајт одржава Carlo Teubner (<i>(моје име) at cteubner dot net</i>), а превод Иван Пешић.</footer>
 </body>
 </html>

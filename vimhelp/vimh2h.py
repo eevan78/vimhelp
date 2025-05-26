@@ -33,39 +33,40 @@ VimProject.other = NeovimProject
 NeovimProject.other = VimProject
 
 NeovimProject.local_additions = """\
-<a href="matchit.txt.html#matchit.txt" class="l">matchit.txt</a>       Extended "%" matching
+<a href="matchit.txt.html#matchit.txt" class="l">matchit.txt</a>       Проширено „%” упаривање
 """
 
 # fmt: off
 VimProject.local_additions = NeovimProject.local_additions + """\
-<a href="editorconfig.txt.html#editorconfig.txt" class="l">editorconfig.txt</a>  EditorConfig plugin for vim.
-<a href="vim_faq.txt.html#vim_faq.txt" class="l">vim_faq.txt</a>       Frequently Asked Questions
+<a href="editorconfig.txt.html#editorconfig.txt" class="l">editorconfig.txt</a>  EditorConfig додатак за vim.
+<a href="comment.txt.html#comment.txt" class="l">comment.txt</a>       Додавање и уклањање коментара из текста
+<a href="helptoc.txt.html#helptoc.txt" class="l">helptoc.txt</a>       Интерактивни садржај за бафере помоћи и још неколико осталих
+                  типова фајлова
 """
 # fmt: on
-
 
 PROJECTS = {"vim": VimProject, "neovim": NeovimProject}
 
 RE_TAGLINE = re.compile(r"(\S+)\s+(\S+)")
 
-PAT_WORDCHAR = "[!#-)+-{}~\xc0-\xff]"
+PAT_WORDCHAR = "[!#-)+-{}~\xc0-\xffЂ-џ]"
 
 PAT_HEADER = r"(^.*~$)"
 PAT_GRAPHIC = r"(^.* `$)"
-PAT_PIPEWORD = r"(?<!\\)\|([#-)!+-{}~]+)\|"
-PAT_STARWORD = r"\*([#-)!+-~]+)\*(?:(?=\s)|$)"
+PAT_PIPEWORD = r"(?<!\\)\|([#-)!+-{}~Ђ-џ]+)\|"
+PAT_STARWORD = r"\*([#-)!+-~Ђ-џ]+)\*(?:(?=\s)|$)"
 PAT_COMMAND = r"`([^` \t]+)`"
-PAT_OPTWORD = r"('(?:[a-z]{2,}|t_..)')"
-PAT_CTRL = r"((?:CTRL(?:-SHIFT)?|META|ALT)-(?:W_)?(?:\{char\}|<[A-Za-z]+?>|Break|PageUp|PageDown|Insert|Del|.)?)"
+PAT_OPTWORD = r"('(?:[a-zа-џ]{2,}|t_..)')"
+PAT_CTRL = r"((?:CTRL(?:-SHIFT)?|META|ALT)-(?:W_)?(?:\{кар\}|<[A-Za-zЂ-џ]+?>|Break|PageUp|PageDown|Insert|Del|.)?)"
 PAT_SPECIAL = (
-    r"(<(?:[-a-zA-Z0-9_]+|[SCM]-.)>|\{.+?}|"
-    r"\[(?:range|line|count|offset|\+?cmd|[-+]?num|\+\+opt|"
-    r"arg|arguments|ident|addr|group)]|vim9\[cmd]|"
-    r"(?<=\s)\[[-a-z^A-Z0-9_]{2,}])"
+    r"(<(?:[-a-zA-Z0-9Ђ-џ_]+|[SCM]-.)>|\{.+?}|"
+    r"\[(?:опсег|линија|број|померај|\+?ком|[-+]?бр|\+\+опц|"
+    r"арг|аргументи|идент|адр|група)]|vim9\[ком]|"
+    r"(?<=\s)\[[-a-z^A-Z0-9Ђ-џ_]{2,}])"
 )
-PAT_TITLE = r"(Vim version [0-9.a-z]+|N?VIM REFERENCE.*)"
+PAT_TITLE = r"(Vim верзију [0-9.a-zЂ-џ]+|N?VIM РЕФЕРЕНТНО.*)"
 PAT_NOTE = (
-    r"((?<!" + PAT_WORDCHAR + r")(?:note|NOTE|Notes?):?(?!" + PAT_WORDCHAR + r"))"
+    r"((?<!" + PAT_WORDCHAR + r")(?:напомена|НАПОМЕНА|Напомена?):?(?!" + PAT_WORDCHAR + r"))"
 )
 PAT_URL = r'((?:https?|ftp)://[^\'"<> \t]+[a-zA-Z0-9/])'
 PAT_WORD = (
@@ -94,17 +95,17 @@ RE_HRULE = re.compile(r"(?:===.*===|---.*---)$")
 RE_HRULE1 = re.compile(r"===.*===$")
 RE_HEADING = re.compile(
     r"[0-9.\s*]*"
-    r"(?!\s*vim:|\s*Next chapter:|\s*Copyright:|\s*Table of contents:|\s*Advance information about|$)"
+    r"(?!\s*vim:|\s*Наредно поглавље:|\s*Ауторска права:|\s*Садржај:|\s*Advance information about|$)"
     r"(.+?)\s*(?:\*|~?$)"
 )
 RE_EG_START = re.compile(r"(.* )?>(?:vim|lua)?$")
 RE_EG_END = re.compile(r"[^ \t]")
 RE_SECTION = re.compile(
     r"(?!NOTE$|UTF-8\.$|VALID\.$|OLE\.$|CTRL-|\.\.\.$)"
-    r"([A-Z.][-A-Z0-9 .,()_?']*?)\s*(?:\s\*|$)"
+    r"([A-ZЂ-Ш.][-A-Z0-9 .,()_?']*?)\s*(?:\s\*|$)"
 )
 RE_STARTAG = re.compile(r'\*([^ \t"*]+)\*(?:\s|$)')
-RE_LOCAL_ADD = re.compile(r".*\s\*local-additions\*$")
+RE_LOCAL_ADD = re.compile(r".*\s\*local-additions\* \*локалне-допуне\*$")
 
 
 class Link:
@@ -218,7 +219,7 @@ class VimH2H:
         def xform(c):
             if c.isalnum():
                 return c.lower()
-            elif c in " ,.?!'\"":
+            elif c in " ,.?!'\"„”’":
                 return "-"
             else:
                 return ""

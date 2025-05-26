@@ -8,6 +8,7 @@ import argparse
 import os.path
 import pathlib
 import sys
+import re
 
 import flask
 
@@ -17,6 +18,7 @@ sys.path.append(str(root_path))
 
 from vimhelp.vimh2h import VimH2H  # noqa: E402
 
+VERSION_TAG_RE = re.compile(r"^.*?((?:\d\.){2}\d+)$")
 
 def main():
     parser = argparse.ArgumentParser(description="Convert Vim help files to HTML")
@@ -40,6 +42,12 @@ def main():
         default="vim",
         help="Vim flavour (default: vim)",
     )
+    #parser.add_argument(
+    #    "--version-tag",
+    #    "-v",
+    #    type=pathlib.Path,
+    #    help="Manual entry of the version tag (default: none)",
+    #)
     parser.add_argument(
         "--web-version",
         "-w",
@@ -96,16 +104,25 @@ def run(args):
 
     mode = "hybrid" if args.web_version else "offline"
 
+    ver = None
+
+    with open(pathlib.Path(args.in_dir).parent / 'version.txt', 'r') as input_file:
+        contents = input_file.read().split('\r\n')
+        if contents is not None:
+            if t := VERSION_TAG_RE.match(contents[0]):
+                ver = t.group(1)
+        print(f"Version is {ver}")
+    
     if not args.no_tags and (tags_file := args.in_dir / "tags").is_file():
         print("Processing tags file...")
-        h2h = VimH2H(mode=mode, project=args.project, tags=tags_file.read_text())
+        h2h = VimH2H(mode=mode, project=args.project, version=ver, tags=tags_file.read_text())
         faq = args.in_dir / "vim_faq.txt"
         if faq.is_file():
             print("Processing FAQ tags...")
             h2h.add_tags(faq.name, faq.read_text())
     else:
         print("Initializing tags...")
-        h2h = VimH2H(mode=mode, project=args.project)
+        h2h = VimH2H(mode=mode, version=ver, project=args.project)
         for infile in args.in_dir.iterdir():
             if infile.suffix == ".txt":
                 h2h.add_tags(infile.name, infile.read_text())
