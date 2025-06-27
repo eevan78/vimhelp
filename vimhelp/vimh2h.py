@@ -42,6 +42,7 @@ VimProject.local_additions = NeovimProject.local_additions + """\
 <a href="comment.srx.html#comment.txt" class="l">comment.txt</a>       Додавање и уклањање коментара из текста
 <a href="helptoc.srx.html#helptoc.txt" class="l">helptoc.txt</a>       Интерактивни садржај за бафере помоћи и још неколико осталих
                   типова фајлова
+<a href="vim_faq.srx.html#vim_faq.txt" class="l">vim_faq.txt</a>       Vim Често Постављана Питања
 """
 # fmt: on
 

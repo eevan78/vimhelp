@@ -38,7 +38,7 @@ those are the only ones that get rendered dynamically with each request. #}
 They are kept up-to-date <a href="https://github.com/c4rlo/vimhelp" target="_blank" rel="noopener noreferrer" class="d">automatically</a>
 from the <a href="{{project.doc_src_url}}" target="_blank" rel="noopener noreferrer" class="d">{{project.name}} source repository</a>.
 {% if project.name == "Vim" %}
-Also included is the <a href="vim_faq.txt.html">Vim FAQ</a>, kept up to date from its
+Also included is the <a href="vim_faq.srx.html">Vim FAQ</a>, kept up to date from its
 <a href="https://github.com/chrisbra/vim_faq" target="_blank" rel="noopener noreferrer" class="d">GitHub repository</a>.
 {% endif %}
 </p>
@@ -52,16 +52,21 @@ are also available.</p>
 <h1>{{project.name}} фајлови помоћи</h1>
 </div>
 <p>Ово је локална HTML верзија српског превода <a href="{{project.url}}" target="_blank" rel="noopener noreferrer">{{project.name}}</a> фајлова помоћи{% if version %}, ажурираних за {{project.name}} {{version}}{% endif %}.
+{% if project.name == "Vim" %}
+Такође је присутан и превод <a href="vim_faq.srx.html">Vim ЧПП</a>, који се синхронизује са његовим
+<a href="https://github.com/chrisbra/vim_faq" target="_blank" rel="noopener noreferrer" class="d">GitHub репозиторијумом</a>.
+{% endif %}
+</p>
 {% endif %}
 
 {% set sitenavi %}
 Брзи линкови:
 <a href="{{helptxt}}">преглед помоћи</a> &middot;
-<a href="quickref.srx.html">брза референца</a> &middot;
+<a href="quickref.srx.html">брзи приручник</a> &middot;
 <a href="usr_toc.srx.html">садржај корисничког упутства</a> &middot;
 <a href="{{helptxt}}#reference_toc">садржај референтног упутства</a>
 {% if project.name == "Vim" %}
-{# &middot; <a href="vim_faq.txt.html">faq</a> #}
+&middot; <a href="vim_faq.srx.html">чпп</a>
 {% endif %}
 {% endset %}
 
