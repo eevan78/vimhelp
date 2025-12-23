@@ -101,7 +101,7 @@ RE_HEADING = re.compile(
     r"(?!\s*vim:|\s*Наредно поглавље:|\s*Ауторска права:|\s*Садржај:|\s*Advance information about|$)"
     r"(.+?)\s*(?:\*|~?$)"
 )
-RE_EG_START = re.compile(r"(.* )?>(?:vim|lua)?$")
+RE_EG_START = re.compile(r"(.* )?>(?:vi|vim|vim9|lua)?$")
 RE_EG_END = re.compile(r"[^ \t]")
 RE_SECTION = re.compile(
     r"(?!NOTE$|UTF-8\.$|VALID\.$|OLE\.$|CTRL-|\.\.\.$)"
