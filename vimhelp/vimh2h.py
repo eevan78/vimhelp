@@ -40,6 +40,8 @@ NeovimProject.local_additions = """\
 VimProject.local_additions = NeovimProject.local_additions + """\
 <a href="editorconfig.srx.html#editorconfig.txt" class="l">editorconfig.txt</a>  EditorConfig додатак за vim.
 <a href="comment.srx.html#comment.txt" class="l">comment.txt</a>       Додавање и уклањање коментара из текста
+<a href="helpcurwin.srx.html#helpcurwin.txt" class="l">helpcurwin.txt</a>    необавезни пакет који омогућава отварање помоћи у текућем
+                  прозору
 <a href="helptoc.srx.html#helptoc.txt" class="l">helptoc.txt</a>       Интерактивни садржај за бафере помоћи и још неколико осталих
                   типова фајлова
 <a href="vim_faq.srx.html#vim_faq.txt" class="l">vim_faq.txt</a>       Vim Често Постављана Питања
